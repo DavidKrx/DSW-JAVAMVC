@@ -3,10 +3,7 @@ package spring.dsw.animals.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import spring.dsw.animals.models.Animal;
 import spring.dsw.animals.services.AnimalServices;
 
@@ -14,10 +11,8 @@ import java.util.List;
 
 @Controller
 public class MainController {
-
-    @Autowired
-    public AnimalServices animalServices;
-
+    private Integer idContador=4;
+    private AnimalServices animalServices=new AnimalServices();
 
     @GetMapping("/")
     public String animales(Model model){
@@ -25,23 +20,26 @@ public class MainController {
         return "index";
     }
 
-    @GetMapping("/animal/{id}")
-    public String getAnimal(@PathVariable Integer id,Model model){
-        model.addAttribute("animal",animalServices.getAnimalById(id));
+    @GetMapping("/animal/details/{id}")
+    public String detailsAnimal(@PathVariable Integer id,Model model){
+        Integer a=id-1;
+        model.addAttribute("animal",animalServices.getAnimalById(a));
         return "animal/details";
     }
-
     @GetMapping("/animal/create")
     public String goCreateAnimal(Model model){
         model.addAttribute("animal",new Animal());
-        return "animal/crear";
+        return "animal/create";
     }
 
     @PostMapping("/animal/create")
-    public String createAnimal(Model model){
-        model.addAttribute("despide","Adios mi gente");
-        return "/createAnimal";
+    public String createAnimal(@ModelAttribute("animal") Animal animal){
+        animal.setId(idContador);
+        animalServices.addAnimal(animal);
+        idContador++;
+        return "redirect:/";
     }
+
     @GetMapping("/felicita/{id}")
     public String felicita(@PathVariable Integer id, @RequestParam(defaultValue ="15",required = false) Integer age, @RequestParam(defaultValue = "pedro", required = false) String name, Model model){
         model.addAttribute("id",id);
@@ -50,4 +48,6 @@ public class MainController {
         return "felicita";
         /*https://www.thymeleaf.org/*/
     }
+
+
 }

@@ -4,16 +4,16 @@ public class Animal {
     private Integer Id;
     private String Name;
     private Integer AverageLifeAge;
-    private Boolean IsExtinct;
+    private Boolean Extinct;
 
     public Animal(){
     }
 
-    public Animal(Integer id, String name, Integer averageLifeAge, Boolean isExtinct) {
+    public Animal(Integer id, String name, Integer averageLifeAge, Boolean extinct) {
         Id = id;
         Name = name;
         AverageLifeAge = averageLifeAge;
-        IsExtinct = isExtinct;
+        Extinct = extinct;
     }
 
     public Integer getId() {
@@ -41,19 +41,19 @@ public class Animal {
     }
 
     public Boolean getExtinct() {
-        return IsExtinct;
+        return Extinct;
     }
 
     public void setExtinct(Boolean extinct) {
-        IsExtinct = extinct;
+        Extinct = extinct;
     }
 
     @Override
     public String toString() {
-        return "Animal:" +
+        return "Animal:" +"\n" +
                 "Id=" + Id +
                 ", Name='" + Name + '\'' +
                 ", AverageLifeAge=" + AverageLifeAge +
-                ", IsExtinct=" + IsExtinct;
+                ", IsExtinct=" + Extinct;
     }
 }
