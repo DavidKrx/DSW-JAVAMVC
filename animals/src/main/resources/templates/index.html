@@ -46,11 +46,8 @@
     <tr th:each="animal : ${animales}">
         <td th:text="${animal.id}"></td>
         <td th:text="${animal.name}"></td>
-
         <td th:text="${animal.averageLifeAge != null ? animal.AverageLifeAge : 'N/A'}"></td>
-        <td>Extinto</td>
-
-        <!-- No Funciona     <td th:text="${animal.extinct ? 'Sí' : 'No') : 'Desconocido'}"></td>  -->
+        <td th:text="${animal.extinct ? 'Sí' : 'No'}"></td>
         <td>
             <a th:href="'animal/details/'+${animal.id}">Detalles</a>
             <a th:href="'animal/update/'+${animal.id}">Actualizar</a>

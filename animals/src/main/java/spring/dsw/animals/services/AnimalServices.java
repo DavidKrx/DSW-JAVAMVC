@@ -26,11 +26,11 @@ public class AnimalServices {
         listAnimals.add(animal);
     }
 
-    public void deletePerson(Integer id) {
+    public void deleteAnimal(Integer id) {
         listAnimals.remove(id);
     }
 
-    public Animal updatePerson(Integer id, Animal animalDetails) {
+    public Animal updateAnimal(Integer id, Animal animalDetails) {
         Animal animal = listAnimals.get(id);
         animal.setName(animalDetails.getName());
         animal.setAverageLifeAge(animalDetails.getAverageLifeAge());
