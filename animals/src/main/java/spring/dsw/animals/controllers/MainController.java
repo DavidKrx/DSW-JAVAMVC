@@ -40,13 +40,18 @@ public class MainController {
         return "redirect:/";
     }
 
-    @GetMapping("/felicita/{id}")
-    public String felicita(@PathVariable Integer id, @RequestParam(defaultValue ="15",required = false) Integer age, @RequestParam(defaultValue = "pedro", required = false) String name, Model model){
-        model.addAttribute("id",id);
-        model.addAttribute("age",age);
-        model.addAttribute("name",name);
-        return "felicita";
-        /*https://www.thymeleaf.org/*/
+    @GetMapping("/animal/update/{id}")
+    public String goUpdateAnimal(@PathVariable Integer id,Model model){
+        Integer a=id-1;
+        model.addAttribute("animal",animalServices.getAnimalById(a));
+        return "animal/update";
+    }
+
+    @PutMapping("/animal/update/{id}")
+    public String updateAnimal(@PathVariable Integer id,@ModelAttribute("animal") Animal animal){
+        //animal.setId(id);
+        animalServices.updateAnimal(id,animal);
+        return "redirect:/";
     }
 
 

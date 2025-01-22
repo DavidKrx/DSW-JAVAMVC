@@ -5,10 +5,19 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body>
-<form action="#" th:action="@{/animal/delete}" th:object="${animal}" method="delete">
-    <label type="text" id="name" th:field="*{nombre}"></label>
-    <input type="submit" value="Borrar">
+<div th:replace="~{fragment/header::menu}"></div>
+<form action="#" th:action="@{/animal/update/{id}" th:object="${animal}" method="put">
 
+    <label for="nombre">Nombre</label>
+    <input type="text" id="nombre" th:field="*{name}" th:value="${name}" >
+
+    <label for="AverageLifeAge">Edad Media</label>
+    <input type="number" id="AverageLifeAge" th:field="*{averageLifeAge}" th:value="${averageLifeAge}">
+
+    <input type="checkbox" id="extinct" th:field="*{extinct}" th:value="${extinct==true ? true : false}" />
+    <label  for="extinct">Extinto</label>
+
+    <input type="submit" value="Update">
 </form>
 </body>
 </html>

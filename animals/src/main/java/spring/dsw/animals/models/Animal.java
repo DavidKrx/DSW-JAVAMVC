@@ -1,8 +1,16 @@
 package spring.dsw.animals.models;
 
+import jakarta.validation.constraints.*;
+
 public class Animal {
+
     private Integer Id;
+
+    @Size(min=3,max=15, message = "Tiene que tener un valor comprendido entre 3 y 15")
     private String Name;
+
+    @Min(value = 1, message = "El minimo es 1")
+    @Max(value = 10, message = "El maximo es 10")
     private Integer AverageLifeAge;
     private Boolean Extinct;
 
