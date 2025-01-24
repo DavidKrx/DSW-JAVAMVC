@@ -1,9 +1,15 @@
 package spring.dsw.animals.models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.validation.constraints.*;
 
-public class Animal {
 
+    @Entity
+public class Animal {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer Id;
 
     @Size(min=3,max=15, message = "Tiene que tener un valor comprendido entre 3 y 15")
