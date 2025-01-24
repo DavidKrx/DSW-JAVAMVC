@@ -3,10 +3,11 @@ package spring.dsw.animals.models;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
 
-    @Entity
+@Entity
 public class Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

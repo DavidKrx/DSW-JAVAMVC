@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class AnimalServices {
+public class AnimalService {
     List<Animal> listAnimals = new ArrayList<Animal>(
             Arrays.asList(
                     new Animal(1,"Perro",1,false),

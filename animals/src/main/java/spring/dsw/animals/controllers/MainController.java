@@ -1,18 +1,15 @@
 package spring.dsw.animals.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import spring.dsw.animals.models.Animal;
-import spring.dsw.animals.services.AnimalServices;
-
-import java.util.List;
+import spring.dsw.animals.services.AnimalService;
 
 @Controller
 public class MainController {
     private Integer idContador=4;
-    private AnimalServices animalServices=new AnimalServices();
+    private AnimalService animalServices=new AnimalService();
 
     @GetMapping("/")
     public String animales(Model model){
@@ -54,5 +51,16 @@ public class MainController {
         return "redirect:/";
     }
 
+    @GetMapping("/animal/delete/{id}")
+    public String goDeleteAnimal(@PathVariable Integer id,Model model){
+        model.addAttribute("animal",animalServices.getAnimalById(id));
+        return "animal/delete";
+    }
+
+    @DeleteMapping("/animal/delete/{id}")
+    public String deleteAnimal(@PathVariable Integer id){
+        animalServices.deleteAnimal(id);
+        return "redirect:/";
+    }
 
 }
