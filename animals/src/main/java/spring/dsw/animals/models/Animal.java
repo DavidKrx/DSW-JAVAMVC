@@ -12,16 +12,24 @@ public class Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer Id;
-
+    @NotNull(message = "Este campo no puede quedar vacío")
+    @NotBlank(message = "Este campo no puede estar en blanco")
     @Size(min=3,max=15, message = "Tiene que tener un valor comprendido entre 3 y 15")
     private String Name;
-
+    @NotNull
     @Min(value = 1, message = "El minimo es 1")
     @Max(value = 10, message = "El maximo es 10")
     private Integer AverageLifeAge;
-    private Boolean Extinct;
+    @NotNull(message = "Este campo no puede ser vacío")
+    private boolean Extinct;
 
     public Animal(){
+    }
+
+    public Animal(String name, Integer averageLifeAge, Boolean extinct) {
+        Name = name;
+        AverageLifeAge = averageLifeAge;
+        Extinct = extinct;
     }
 
     public Animal(Integer id, String name, Integer averageLifeAge, Boolean extinct) {
@@ -55,11 +63,11 @@ public class Animal {
         AverageLifeAge = averageLifeAge;
     }
 
-    public Boolean getExtinct() {
+    public boolean getExtinct() {
         return Extinct;
     }
 
-    public void setExtinct(Boolean extinct) {
+    public void setExtinct(boolean extinct) {
         Extinct = extinct;
     }
 

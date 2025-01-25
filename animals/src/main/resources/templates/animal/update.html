@@ -5,7 +5,8 @@
 </head>
 <body>
 <div th:replace="~{fragment/header::menu}"></div>
-<form action="#" th:action="@{/animal/update/{id}" th:object="${animal}" method="put">
+<form action="#" th:action="@{/animal/updateAnimal/" th:object="${animal}" method="put">
+    <input type="hidden"  th:field="*{Id}">
 
     <label for="nombre">Nombre</label>
     <input type="text" id="nombre" th:field="*{name}" th:value="${name}" >

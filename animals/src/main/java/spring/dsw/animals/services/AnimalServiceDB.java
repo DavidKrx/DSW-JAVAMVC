@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import spring.dsw.animals.repository.AnimalRepository;
 
 @Service
-public class AnimalServiceDB implements AnimalService {
+public class AnimalServiceDB implements AnimalServiceMem {
     @Autowired
     private AnimalRepository animalRepository;
 

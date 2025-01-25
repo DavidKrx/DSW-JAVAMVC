@@ -1,15 +1,16 @@
 package spring.dsw.animals.controllers;
 
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import spring.dsw.animals.models.Animal;
-import spring.dsw.animals.services.AnimalService;
+import spring.dsw.animals.services.AnimalServiceMem;
 
 @Controller
 public class MainController {
     private Integer idContador=4;
-    private AnimalService animalServices=new AnimalService();
+    private AnimalServiceMem animalServices=new AnimalServiceMem();
 
     @GetMapping("/")
     public String animales(Model model){
@@ -30,7 +31,7 @@ public class MainController {
     }
 
     @PostMapping("/animal/create")
-    public String createAnimal(@ModelAttribute("animal") Animal animal){
+    public String createAnimal(@Valid @ModelAttribute("animal") Animal animal){
         animal.setId(idContador);
         animalServices.addAnimal(animal);
         idContador++;
@@ -45,7 +46,7 @@ public class MainController {
     }
 
     @PutMapping("/animal/update/{id}")
-    public String updateAnimal(@PathVariable Integer id,@ModelAttribute("animal") Animal animal){
+    public String updateAnimal(@Valid @PathVariable Integer id,@ModelAttribute("animal") Animal animal){
         //animal.setId(id);
         animalServices.updateAnimal(id,animal);
         return "redirect:/";
