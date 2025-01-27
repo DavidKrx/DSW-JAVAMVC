@@ -23,20 +23,26 @@ public class Animal {
     @NotNull(message = "Este campo no puede ser vacío")
     private boolean Extinct;
 
+    @ManyToOne
+    @JoinColumn(name = "clase_id", nullable = false)
+    private Clase clase;
+
     public Animal(){
     }
 
-    public Animal(String name, Integer averageLifeAge, Boolean extinct) {
+    public Animal(String name, Integer averageLifeAge, Boolean extinct,Clase clas) {
         Name = name;
         AverageLifeAge = averageLifeAge;
         Extinct = extinct;
+        clase=clas;
     }
 
-    public Animal(Integer id, String name, Integer averageLifeAge, Boolean extinct) {
+    public Animal(Integer id, String name, Integer averageLifeAge, Boolean extinct,Clase clas) {
         Id = id;
         Name = name;
         AverageLifeAge = averageLifeAge;
         Extinct = extinct;
+        clase=clas;
     }
 
     public Integer getId() {
@@ -69,6 +75,14 @@ public class Animal {
 
     public void setExtinct(boolean extinct) {
         Extinct = extinct;
+    }
+
+    public Clase getClase() {
+        return clase;
+    }
+
+    public void setClase(Clase clase) {
+        this.clase = clase;
     }
 
     @Override

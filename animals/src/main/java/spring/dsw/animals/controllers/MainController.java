@@ -5,12 +5,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import spring.dsw.animals.models.Animal;
-import spring.dsw.animals.services.AnimalServiceMem;
+import spring.dsw.animals.services.AnimalService;
+import spring.dsw.animals.services.ClaseService;
 
 @Controller
 public class MainController {
-    private Integer idContador=4;
-    private AnimalServiceMem animalServices=new AnimalServiceMem();
+    private AnimalService animalServices=new AnimalService();
+    //private ClaseService claseServices=new ClaseService();
+    /*
+    @GetMapping("/clase")
+    public String clases(Model model){
+        model.addAttribute("clases",claseServices.getAllClases());
+        return "clases/list";
+    }
+
+     */
 
     @GetMapping("/")
     public String animales(Model model){
@@ -32,9 +41,7 @@ public class MainController {
 
     @PostMapping("/animal/create")
     public String createAnimal(@Valid @ModelAttribute("animal") Animal animal){
-        animal.setId(idContador);
         animalServices.addAnimal(animal);
-        idContador++;
         return "redirect:/";
     }
 
@@ -63,5 +70,4 @@ public class MainController {
         animalServices.deleteAnimal(id);
         return "redirect:/";
     }
-
 }

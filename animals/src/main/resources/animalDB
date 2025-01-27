@@ -1,0 +1,30 @@
+CREATE DATABASE animaldb;
+use animaldb;
+CREATE TABLE clase (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE animal (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(15) NOT NULL,
+    averageLifeAge INT NOT NULL,
+    extinct TINYINT NOT NULL,
+    claseID INT NOT NULL,
+    FOREIGN KEY (claseID) REFERENCES clase(ID)
+);
+
+//Datos
+INSERT INTO clase (name)
+VALUES ('Felino');
+INSERT INTO clase (name)
+VALUES ('Reptil');
+
+INSERT INTO animal(name, averageLifeAge, extinct,claseID)
+VALUES ('Gato', 12,0, 1);
+
+INSERT INTO animal(name, averageLifeAge, extinct,claseID)
+VALUES ('Leopardo', 12,0, 1);
+
+INSERT INTO animal(name, averageLifeAge, extinct,claseID)
+VALUES ('Terodactilo', 20,1,2);
